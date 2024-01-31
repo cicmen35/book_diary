@@ -1,7 +1,8 @@
+#Data structure used for diary 
 def create_diary():
     return []
 
-
+#Function for inserting information about books into the diary
 def insert_book(author, title, genre, year_of_release, pages, date_of_reading, diary):
     year_of_release = int(year_of_release)
     pages = int(pages)
@@ -18,8 +19,8 @@ def insert_book(author, title, genre, year_of_release, pages, date_of_reading, d
         raise TypeError("Invalid page input.")
     if not isinstance(date_of_reading, str):
         raise TypeError("Invalid date of reading input.")
-    book = {"author": author,
-            "title": title,
+    book = {"author": author,                                        #The information is stored in a dictionary
+            "title": title,                                          #The name of the variable is not that important so every book will be named just "book"
             "genres": genre,
             "year of release": year_of_release,
             "pages": pages,
@@ -28,10 +29,9 @@ def insert_book(author, title, genre, year_of_release, pages, date_of_reading, d
     if len(diary) != 0:
         for dict in diary:
             for info in dict.values():
-                if info == title:
-                    print(f"The book {title} is already in the diary.")
+                if info == title:                                            #Checking if the book we want to add isn't already in the diary 
+                    print(f"The book {title} is already in the diary.")    
                     break
-            # Done ale doriešiť v prípade viacerých kníh to blbne
             else:
                 diary.append(book)
                 print(f"The book {title} has been added into the diary.")
@@ -40,18 +40,18 @@ def insert_book(author, title, genre, year_of_release, pages, date_of_reading, d
         diary.append(book)
         print(f"The book {title} has been added into the diary.")
 
-
+#Function for searching for book in a diary
 def search_book(author, title, diary):
     for book in diary:
         if book["author"] == author and book["title"] == title:
-            print("The information about the book:")
+            print("The information about the book:")                            
             for key, value in book.items():
                 print(f"{key}: {value}", end="\n")
             break
     else:
         raise KeyError("Author or title not found.")
 
-
+#Function for deletion of book from the diary
 def delete_book(author, title, diary):
     for book in diary:
         if book["author"] == author and book["title"] == title:
@@ -61,7 +61,7 @@ def delete_book(author, title, diary):
     else:
         raise KeyError("Author or title not found.")
 
-
+#Function for deleting all books from the diary
 def delete_record(diary):
     if len(diary) == 0:
         raise ValueError("The diary is empty.")
